@@ -1,0 +1,20 @@
+server:
+  port: 8762 # 8761是eureka server的默认端口
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/ #这便是此eureka server的应用注册地址
+    register-with-eureka: false #不显示对server应用的注册
+    fetch-registry: false
+  instance:
+    hostname: localhost
+    appname: registry
+
+spring:
+  application:
+    name: registry
+  security:
+    user:
+      name: admin
+      password: admin
+      roles: USER,ADMIN

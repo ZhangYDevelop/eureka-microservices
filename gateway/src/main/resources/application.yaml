@@ -1,0 +1,12 @@
+server:
+  port: 9084
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@${eureka.instance.hostname}:8762/eureka/
+  instance:
+    hostname: localhost
+    appname: gateway
+spring:
+  application:
+    name: gateway
