@@ -1,13 +1,14 @@
 server:
-  port: 9084
+  port: 8763
 eureka:
   client:
     service-url:
       defaultZone: http://admin:admin@${eureka.instance.hostname}:8762/eureka/
   instance:
     hostname: localhost
-    appname: gateway
+    appname: service-provider
+    instance-id: service-provider
     prefer-ip-address: true
 spring:
   application:
-    name: gateway
+    name: service-provider
