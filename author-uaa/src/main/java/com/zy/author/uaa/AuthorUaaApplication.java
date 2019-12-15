@@ -1,11 +1,14 @@
-package com.zy.uaa;
+package com.zy.author.uaa;
+
+/**
+ * @AUTHOR zhangy
+ * 2019-12-15  22:45
+ */
 
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @AUTHOR zhangy
@@ -15,11 +18,8 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableSwagger2Doc
 @EnableDiscoveryClient
-@EnableFeignClients
-@MapperScan("com.zy.uaa.mapper")
-public class UaaServerApplication {
-
+public class AuthorUaaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(UaaServerApplication.class,args);
+        SpringApplication.run(AuthorUaaApplication.class, args);
     }
 }

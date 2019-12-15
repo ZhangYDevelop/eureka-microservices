@@ -7,7 +7,7 @@ eureka:
     register-with-eureka: false #不显示对server应用的注册
     fetch-registry: false
   instance:
-    hostname: localhost
+    hostname: 192.168.1.101
     appname: registry
   server:
     enable-self-preservation: false # 关闭自我保护
