@@ -5,7 +5,7 @@ eureka:
     service-url:
       defaultZone: http://admin:admin@${eureka.instance.hostname}:8762/eureka/
   instance:
-    hostname: 192.168.1.101
+    hostname: localhost
     appname: gateway
     prefer-ip-address: true
 spring:
@@ -15,9 +15,10 @@ spring:
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:8764/uaa/oauth/token
-      user-authorization-uri: http://localhost:8764/uaa/oauth/authorize
+      access-token-uri: http://localhost:8764/oauth/token
+      user-authorization-uri: http://localhost:8764/oauth/authorize
       client-id: webapp
+      client-secret: webapp
     resource:
-      user-info-uri: http://localhost:8764/uaa/user
+      user-info-uri: http://localhost:8764/user
       prefer-token-info: false

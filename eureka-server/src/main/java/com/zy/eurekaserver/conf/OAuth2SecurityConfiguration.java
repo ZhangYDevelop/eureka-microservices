@@ -1,19 +1,20 @@
-package com.zy.service.provider.conf;
+package com.zy.eurekaserver.conf;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 
-import javax.servlet.http.HttpServletResponse;
-
 /**
- * Created by wangyunfei on 2017/6/9.
- */
+ * @Author zhangy
+ * @Date 10:24 2019/12/16
+ **/
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+public class OAuth2SecurityConfiguration extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -27,11 +28,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
+
                 .authorizeRequests()
+                .antMatchers("/services/**").authenticated()
+                .antMatchers("/api/profile-info").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/management/health").permitAll()
-                .antMatchers("/management/info").permitAll()
-                .antMatchers("/management/**").permitAll()
-                .antMatchers("/swagger-resources/configuration/ui").permitAll();
+                .antMatchers("/management/**").hasAuthority("admin");
     }
 }

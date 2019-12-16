@@ -60,7 +60,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
             .and()
                 .withClient("webapp")
-                .scopes("xx")
-                .authorizedGrantTypes("implicit");
+                .secret("webapp")
+                .scopes("web-app")
+                .autoApprove(true)
+                .authorizedGrantTypes("client_credentials");
     }
 }

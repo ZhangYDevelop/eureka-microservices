@@ -1,6 +1,5 @@
 package com.zy.author.uaa.security;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,7 +15,6 @@ import java.util.Set;
  * Created by wangyunfei on 2017/6/9.
  */
 //@Service("userDetailsService")
-@Slf4j
 public class DomainUserDetailsService implements UserDetailsService {
 
 
