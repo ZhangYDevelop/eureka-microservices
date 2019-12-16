@@ -55,14 +55,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory()
                 .withClient("android")
-                .scopes("xx")
+                .scopes("xx") //此处的scopes是无用的，可以随意设置
                 .secret("android")
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-            .and()
+                .and()
                 .withClient("webapp")
-                .secret("webapp")
-                .scopes("web-app")
-                .autoApprove(true)
-                .authorizedGrantTypes("client_credentials");
+                .scopes("xx")
+                .authorizedGrantTypes("implicit");
     }
 }

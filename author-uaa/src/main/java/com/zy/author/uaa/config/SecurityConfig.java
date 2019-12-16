@@ -48,27 +48,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .exceptionHandling()
-                //.authenticationEntryPoint(authenticationEntryPoint)
-                .and()
-                .csrf()
-                .disable()
-                .headers()
-                .frameOptions()
-                .disable()
-                .and()
-                .sessionManagement()
-                //.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .httpBasic()
-                //.realmName("JHipster Registry")
-                .and()
-                .authorizeRequests()
-                .antMatchers("/v2/api-docs").permitAll();
-    }
-
 }

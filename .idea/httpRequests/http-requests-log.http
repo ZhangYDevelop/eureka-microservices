@@ -1,0 +1,91 @@
+POST http://localhost:8764/api/user
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+
+POST http://localhost:8764/api/user
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+
+POST http://localhost:8764/api/user
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+
+POST http://localhost:8764/api/user
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+
+POST http://localhost:8764/oauth/token
+Accept: */*
+Cache-Control: no-cache
+Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+
+POST http://localhost:8764/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T022620.401.json
+
+###
+
+POST http://localhost:8764/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T022441.401.json
+
+###
+
+POST http://localhost:8764/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T022437.401.json
+
+###
+
+POST http://localhost:9084/uaa/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T022422.401.json
+
+###
+
+POST http://localhost:9084/uaa/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T021904.401.json
+
+###
+
+GET http://localhost:8764/uaa/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T021847.404.json
+
+###
+
+POST http://localhost:8764/uaa/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T021813.404.json
+
+###
+
