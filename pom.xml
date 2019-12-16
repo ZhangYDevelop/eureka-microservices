@@ -19,11 +19,11 @@
         <module>eureka-server</module>
         <module>gateway</module>
         <module>service-provider</module>
-        <module>uaa</module>
         <module>admin</module>
+        <module>author-uaa</module>
     </modules>
 
-    
+
     <!--依赖管理，用于管理spring-cloud的依赖，其中Camden.SR3是版本号-->
     <dependencyManagement>
         <dependencies>
