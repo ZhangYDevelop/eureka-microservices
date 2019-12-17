@@ -55,7 +55,7 @@ public class JWTSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void init() {
         try {
             authenticationManagerBuilder
-                    .userDetailsService(userDetailsService())
+                    .userDetailsService(userDetailsServices())
                     .passwordEncoder(passwordEncoder());
         } catch (Exception e) {
             throw new BeanInitializationException("Security configuration failed", e);
@@ -74,7 +74,7 @@ public class JWTSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsService userDetailsServices() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(
                 User.withUsername(username)

@@ -11,6 +11,10 @@ eureka:
 spring:
   application:
     name: gateway
+#  security:
+#    user:
+#      name: admin
+#      password: admin
 
 security:
   oauth2:

@@ -14,10 +14,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-@Order(99)//必加
+@EnableOAuth2Sso
+@Order(99)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+       http
+               .csrf()
+               .disable()
+               .authorizeRequests()
+               .antMatchers("/login").permitAll()
+               .anyRequest().authenticated();
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -80,9 +81,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("webapp")
                 .scopes("read")
                 .authorizedGrantTypes("implicit")
+                .redirectUris("http://localhost:9084/swagger-ui.html")
                 .and()
                 .withClient("browser")
                 .authorizedGrantTypes("refresh_token", "password")
                 .scopes("read");
     }
+
+
+
 }
