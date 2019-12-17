@@ -1,3 +1,75 @@
+POST http://localhost:9084/uaa/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-17T041939.401.json
+
+###
+
+POST http://localhost:9084/uaa/oauth/token?grant_type=password&username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-17T041639.401.json
+
+###
+
+POST http://localhost:9084/uaa/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-17T041522.401.json
+
+###
+
+POST http://client:secret@localhost:8764/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T033626.400.json
+
+###
+
+POST http://client:secret@localhost:8764/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T033625.400.json
+
+###
+
+POST http://client:secret@localhost:8764/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T033622.400.json
+
+###
+
+POST http://client:secret@localhost:8764/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T033619.400.json
+
+###
+
+POST http://client:secret@localhost:8764/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T033614.200.json
+
+###
+
+POST http://localhost:8764/oauth/token?grant_type=authorization_code&code=b37t2i
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-12-16T033529.401.json
+
+###
+
 POST http://localhost:8764/api/user
 Accept: */*
 Cache-Control: no-cache

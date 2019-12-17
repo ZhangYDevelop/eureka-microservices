@@ -13,7 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * 2019-12-15  10:42
  */
 @Configuration
-@EnableOAuth2Sso
+@EnableWebSecurity
+@Order(99)//必加
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {

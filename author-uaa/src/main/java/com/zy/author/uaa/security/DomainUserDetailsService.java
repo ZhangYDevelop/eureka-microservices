@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +15,7 @@ import java.util.Set;
 /**
  * Created by wangyunfei on 2017/6/9.
  */
-//@Service("userDetailsService")
+@Service("userDetailsService")
 public class DomainUserDetailsService implements UserDetailsService {
 
 

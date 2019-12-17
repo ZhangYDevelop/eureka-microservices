@@ -17,4 +17,9 @@ public class UserController {
     public Principal user(Principal user){
         return user;
     }
+
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
 }

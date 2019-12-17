@@ -12,16 +12,16 @@ eureka:
 spring:
   application:
     name: uaa
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
-    default-property-inclusion: non_null
-  redis:
-    host: localhost
-    port: 6379
+  security:
+    user:
+      name: admin
+      password: $2a$10$ODoZJKtLmhwpdfeoU08Q7OqrpftHfWpaBGhsRG.Xw4XRk69/RkLR.
+#  redis:
+#    host: localhost
+#    port: 6379
 
-security:
-  oauth2:
-    resource:
-      filter-order: 3
+#security:
+#  oauth2:
+#    resource:
+#      filter-order: 3
 
