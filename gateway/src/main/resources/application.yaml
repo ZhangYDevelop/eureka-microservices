@@ -22,6 +22,7 @@ security:
       access-token-uri: http://localhost:8764/oauth/token
       user-authorization-uri: http://localhost:8764/oauth/authorize
       client-id: webapp
+      client-secret: webapp
     resource:
-      user-info-uri: http://localhost:8764/user
+      user-info-uri: http://localhost:8764/api/user
       prefer-token-info: false

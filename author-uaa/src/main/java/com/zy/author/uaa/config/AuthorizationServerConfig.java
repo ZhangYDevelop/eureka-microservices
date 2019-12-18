@@ -49,11 +49,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
-                .allowFormAuthenticationForClients()
                 // 开启/oauth/token_key验证端口无权限访问
                 .tokenKeyAccess("permitAll()")
                 // 开启/oauth/check_token验证端口认证权限访问
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("isAuthenticated()")
+                .allowFormAuthenticationForClients();
     }
 
     @Autowired
@@ -76,11 +76,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("android")
                 .scopes("read")
                 .secret("android")
+                .autoApprove(true)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .and()
                 .withClient("webapp")
-                .scopes("read")
-                .authorizedGrantTypes("implicit")
+                .scopes("all")
+                .secret("webapp")
+                .autoApprove(true)
+                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .redirectUris("http://localhost:9084/swagger-ui.html")
                 .and()
                 .withClient("browser")

@@ -24,4 +24,9 @@ spring:
 #  oauth2:
 #    resource:
 #      filter-order: 3
-
+security:
+  basic:
+    enabled: false
+management:
+  security:
+    enabled: false
