@@ -15,15 +15,16 @@ import java.util.Set;
 /**
  * Created by wangyunfei on 2017/6/9.
  */
-//@Service("userDetailsService")
-//public class DomainUserDetailsService implements UserDetailsService {
-//
-//
-//
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Set<GrantedAuthority> grantedAuthorities =  new HashSet<>();
-//        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("admin");
-//        return new User("admin","$2a$10$ODoZJKtLmhwpdfeoU08Q7OqrpftHfWpaBGhsRG.Xw4XRk69/RkLR.",grantedAuthorities);
-//    }
-//}
+@Service("userDetailsService")
+public class DomainUserDetailsService implements UserDetailsService {
+
+
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Set<GrantedAuthority> grantedAuthorities =  new HashSet<>();
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("admin");
+        grantedAuthorities.add(grantedAuthority);
+        return new User("admin","$2a$10$ODoZJKtLmhwpdfeoU08Q7OqrpftHfWpaBGhsRG.Xw4XRk69/RkLR.",grantedAuthorities);
+    }
+}

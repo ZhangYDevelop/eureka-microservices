@@ -23,7 +23,7 @@ import javax.jws.Oneway;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-//
+
 //    @Autowired
 //    private UserDetailsService userDetailsService;
 //    @Autowired
@@ -45,7 +45,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //                .userDetailsService(userDetailsService)//若无，refresh_token会有UserDetailsService is required错误
 //                .tokenStore(tokenStore());
 //    }
-//
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
@@ -56,8 +56,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .allowFormAuthenticationForClients();
     }
 
-    @Autowired
-    private  PasswordEncoder passwordEncoder;
+//    @Autowired
+//    private  PasswordEncoder passwordEncoder;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -84,7 +84,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret("webapp")
                 .autoApprove(true)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .redirectUris("http://localhost:9084/swagger-ui.html")
+                //.redirectUris("http://localhost:9084/swagger-ui.html")
                 .and()
                 .withClient("browser")
                 .authorizedGrantTypes("refresh_token", "password")
