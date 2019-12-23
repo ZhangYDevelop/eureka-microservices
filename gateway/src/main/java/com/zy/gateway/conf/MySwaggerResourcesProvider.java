@@ -16,11 +16,11 @@ import java.util.List;
  */
 @Component
 @Primary
-public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider {
+public class MySwaggerResourcesProvider implements SwaggerResourcesProvider {
 
     private final RouteLocator routeLocator;
 
-    public GatewaySwaggerResourcesProvider(RouteLocator routeLocator) {
+    public MySwaggerResourcesProvider(RouteLocator routeLocator) {
         this.routeLocator = routeLocator;
     }
 
