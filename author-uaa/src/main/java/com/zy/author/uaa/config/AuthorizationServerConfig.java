@@ -45,7 +45,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 //                .userDetailsService(userDetailsService)//若无，refresh_token会有UserDetailsService is required错误
 //                .tokenStore(tokenStore());
 //    }
-
+//
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
@@ -56,41 +56,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .allowFormAuthenticationForClients();
     }
 
-//    @Autowired
-//    private  PasswordEncoder passwordEncoder;
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//        clients.inMemory()
-//                .withClient("android")
-//                .scopes("xx") //此处的scopes是无用的，可以随意设置
-//                .secret("android")
-//                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-//                .and()
-//                .withClient("webapp")
-//                .scopes("xx")
-//                .authorizedGrantTypes("implicit");
-
         // 配置客户端
         clients.inMemory()
-                .withClient("android")
-                .scopes("read")
-                .secret("android")
-                .autoApprove(true)
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                .and()
                 .withClient("webapp")
                 .scopes("all")
-                .secret("webapp")
-                .autoApprove(true)
+                // 必须编码
+                .secret(passwordEncoder.encode("webapp"))
+                .autoApprove(false)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                //.redirectUris("http://localhost:9084/swagger-ui.html")
-                .and()
-                .withClient("browser")
-                .authorizedGrantTypes("refresh_token", "password")
-                .scopes("read");
+                .redirectUris("http://www.baidu.com");
     }
-
-
 
 }
