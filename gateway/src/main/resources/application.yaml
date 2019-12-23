@@ -26,3 +26,5 @@ security:
     resource:
       user-info-uri: http://localhost:8764/api/user
       prefer-token-info: false
+client:
+  uaa: uaa
