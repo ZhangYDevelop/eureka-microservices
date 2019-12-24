@@ -26,8 +26,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
 //    @Autowired
 //    private UserDetailsService userDetailsService;
-//    @Autowired
-//    private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 //    @Autowired
 //    private RedisConnectionFactory connectionFactory;
 //
@@ -52,7 +52,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 // 开启/oauth/token_key验证端口无权限访问
                 .tokenKeyAccess("permitAll()")
                 // 开启/oauth/check_token验证端口认证权限访问
-                .checkTokenAccess("isAuthenticated()")
+                .checkTokenAccess("permitAll()")
                 .allowFormAuthenticationForClients();
     }
 
@@ -67,9 +67,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .scopes("all")
                 // 必须编码
                 .secret(passwordEncoder.encode("webapp"))
-                .autoApprove(false)
+                .autoApprove(true)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .redirectUris("http://www.baidu.com");
     }
 
+
+    /**
+     * 注入authenticationManager
+     * 来支持 password grant type
+     */
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        endpoints.authenticationManager(authenticationManager);
+    }
 }
