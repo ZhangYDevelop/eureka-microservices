@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by wangyunfei on 2017/6/9.
  */
-//@Configuration
-//@EnableResourceServer
+@Configuration
+@EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
@@ -19,6 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/**").permitAll()
                 .antMatchers("/oauth/**", "/logout").permitAll()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()

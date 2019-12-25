@@ -11,8 +11,8 @@ import org.springframework.web.servlet.config.annotation.*;
  * @AUTHOR zhangy
  * 2019-12-22  10:19
  */
-//@EnableWebMvc
-//@Configuration
+@EnableWebMvc
+@Configuration
 public class Webconfig  extends WebMvcConfigurerAdapter {
 
     @Override
