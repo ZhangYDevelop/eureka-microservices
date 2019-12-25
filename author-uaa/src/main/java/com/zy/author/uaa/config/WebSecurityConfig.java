@@ -20,7 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //
     @Bean
@@ -56,14 +56,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-              .csrf().disable()
-              .authorizeRequests()
-              .antMatchers("/oauth/**", "/logout").permitAll()
-              .antMatchers("/login").permitAll()
-              .antMatchers("/v2/api-docs").permitAll()
-              .antMatchers("/swagger-ui.html").permitAll()
-              .antMatchers("/api/user").permitAll()
-              .anyRequest().authenticated()
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .antMatchers("/oauth/**", "/logout").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/api/user").permitAll()
+                .anyRequest().authenticated()
                 .and().formLogin();
     }
 
