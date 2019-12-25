@@ -20,18 +20,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .csrf()
                 .disable()
-                .headers()
-                .frameOptions()
-                .disable()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
                 .authorizeRequests()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/management/health").permitAll()
                 .antMatchers("/management/info").permitAll()
                 .antMatchers("/management/**").permitAll()
-                .antMatchers("/swagger-resources/configuration/ui").permitAll();
+                .antMatchers("/swagger-resources/configuration/ui").permitAll()
+                .anyRequest().authenticated();
     }
 }

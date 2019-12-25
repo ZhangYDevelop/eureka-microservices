@@ -14,7 +14,13 @@ spring:
     name: service-provider
 security:
   oauth2:
+    client:
+      access-token-uri: http://localhost:8764/oauth/token
+      user-authorization-uri: http://localhost:8764/oauth/authorize
+      client-id: webapp
+      client-secret: webapp
     resource:
-      id: service-provider
-      user-info-uri: http://localhost:8764/uaa/user
-      prefer-token-info: false
+      user-info-uri: http://localhost:8764/uaa/api/user
+      #必须设置true
+      prefer-token-info: true
+      token-info-uri: http://localhost:8764/oauth/check_token

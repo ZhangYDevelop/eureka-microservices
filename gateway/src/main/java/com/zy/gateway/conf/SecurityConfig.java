@@ -15,7 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @EnableWebSecurity
-@EnableOAuth2Sso
+//@EnableOAuth2Sso
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -23,8 +23,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/login**","/api/oauth/login")
                 .permitAll()
-                .anyRequest()
-                .authenticated();
+                .and().csrf().disable();
 
 //        http.csrf().disable()
 //                .authorizeRequests()
