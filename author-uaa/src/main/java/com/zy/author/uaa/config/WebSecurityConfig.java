@@ -22,31 +22,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//
     @Bean
     public UserDetailsService userDetailsServices(){
         return new DomainUserDetailsService();
     }
-//
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-//
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .userDetailsService(userDetailsServices())
                 .passwordEncoder(passwordEncoder());
     }
-////
-////    @Bean
-////    public SecurityEvaluationContextExtension securityEvaluationContextExtension() {
-////        return new SecurityEvaluationContextExtension();
-////    }
-////
 
-// 不定义没有password grant_type
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
