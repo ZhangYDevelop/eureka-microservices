@@ -20,7 +20,7 @@ security:
       client-id: webapp
       client-secret: webapp
     resource:
-      user-info-uri: http://localhost:8764/uaa/api/user
+      user-info-uri: http://localhost:8764/api/user
       #必须设置true
       prefer-token-info: true
       token-info-uri: http://localhost:8764/oauth/check_token

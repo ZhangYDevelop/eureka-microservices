@@ -1,10 +1,14 @@
 package com.zy.service.provider.conf;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.ResourceServerTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,17 +19,28 @@ import javax.servlet.http.HttpServletResponse;
 @EnableResourceServer
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+
+    @Autowired
+    private TokenStore tokenStore;
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .disable()
+                .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/**").authenticated()
-                .antMatchers("/management/health").permitAll()
-                .antMatchers("/management/info").permitAll()
-                .antMatchers("/management/**").permitAll()
-                .antMatchers("/swagger-resources/configuration/ui").permitAll()
-                .anyRequest().authenticated();
+                .antMatchers("/**").permitAll()
+                .antMatchers("/oauth/**", "/logout").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/api/user").permitAll()
+                .anyRequest().authenticated()
+                .and().formLogin();
+    }
+
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
+        resources.tokenStore(tokenStore)
+                .stateless(true);
     }
 }

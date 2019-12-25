@@ -30,6 +30,7 @@ public class LoginController {
         map.put("grant_type", "password");
         String token = uaaClient.getAccessToke(map);
         resp.setHeader("access_token", token);
+        req.getSession().setAttribute("access_token", token);
         return token;
 
     }

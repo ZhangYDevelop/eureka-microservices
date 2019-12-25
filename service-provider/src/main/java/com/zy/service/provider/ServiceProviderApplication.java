@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableSwagger2Doc
 public class ServiceProviderApplication {
 
     public static void main(String[] args) {

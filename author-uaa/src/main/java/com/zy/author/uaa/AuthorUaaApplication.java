@@ -16,7 +16,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * 认证服务器
  */
 @SpringBootApplication
-@EnableSwagger2Doc
 @EnableDiscoveryClient
 public class AuthorUaaApplication {
     public static void main(String[] args) {

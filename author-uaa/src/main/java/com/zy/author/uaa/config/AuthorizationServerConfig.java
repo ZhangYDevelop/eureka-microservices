@@ -13,9 +13,14 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.token.*;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 import javax.jws.Oneway;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Created by wangyunfei on 2017/6/9.
@@ -24,28 +29,19 @@ import javax.jws.Oneway;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-//    @Autowired
-//    private UserDetailsService userDetailsService;
     @Autowired
     private AuthenticationManager authenticationManager;
-//    @Autowired
-//    private RedisConnectionFactory connectionFactory;
-//
-//
-//    @Bean
-//    public RedisTokenStore tokenStore() {
-//        return new RedisTokenStore(connectionFactory);
-//    }
-//
-//
-//    @Override
-//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//        endpoints
-//                .authenticationManager(authenticationManager)
-//                .userDetailsService(userDetailsService)//若无，refresh_token会有UserDetailsService is required错误
-//                .tokenStore(tokenStore());
-//    }
-//
+
+    @Autowired
+    private TokenStore tokenStore;
+
+    @Autowired
+    private ClientDetailsService clientDetailsService;
+
+    @Autowired
+    private JwtAccessTokenConverter accessTokenConverter;
+
+
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
@@ -79,6 +75,23 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
+        endpoints.authenticationManager(authenticationManager)
+                .tokenServices(tokenServices());
+    }
+
+    private AuthorizationServerTokenServices tokenServices() {
+        DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
+        defaultTokenServices.setClientDetailsService(clientDetailsService);
+        defaultTokenServices.setSupportRefreshToken(true);
+        defaultTokenServices.setTokenStore(tokenStore); // 支持token刷行
+
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain(); // 令牌增强
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
+        defaultTokenServices.setTokenEnhancer(tokenEnhancerChain);
+
+        defaultTokenServices.setAccessTokenValiditySeconds(30*60); // 令牌有效时间
+        defaultTokenServices.setRefreshTokenValiditySeconds(10*60); // 令牌刷新时间
+
+        return defaultTokenServices;
     }
 }
